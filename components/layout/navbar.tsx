@@ -112,6 +112,14 @@ export function Navbar() {
               ))}
               <li className="pt-2">
                 <Link
+                  href="/client/login"
+                  className="block rounded-full border border-line px-5 py-3 text-center text-base font-semibold text-cream"
+                >
+                  Client Login
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/contact"
                   className="brand-gradient block rounded-full px-5 py-3 text-center text-base font-semibold text-ink"
                 >

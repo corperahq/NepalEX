@@ -94,6 +94,23 @@ lib/site.ts          # all site content (single source of truth)
 
 The **rate calculator**, **shipment tracking**, and **contact form** currently use realistic client-side demo logic. Connect them to the NepalEX backend API for live rates, real tracking, and email delivery (see plan.md §10). Suggested next steps: add the customer portal (login, shipping requests) and the admin/back-office ERP once the API is confirmed.
 
+## Continuous deployment
+
+A GitHub Actions workflow ([.github/workflows/deploy.yml](.github/workflows/deploy.yml)) runs on every push and PR:
+
+1. **Build & Type-check** — `npm ci`, `tsc --noEmit`, `next build` (runs for all pushes/PRs).
+2. **Deploy to Vercel** — on pushes to `main` only, after the build passes.
+
+To enable auto-deploy, add these repository secrets (**Settings → Secrets and variables → Actions**):
+
+| Secret | Where to find it |
+|--------|------------------|
+| `VERCEL_TOKEN` | Vercel → Account Settings → Tokens |
+| `VERCEL_ORG_ID` | Run `vercel link` locally → `.vercel/project.json` |
+| `VERCEL_PROJECT_ID` | Same `.vercel/project.json` |
+
+Until those secrets are set, the build job still runs (CI), and only the deploy job is skipped/failed. Alternatively, connect the repo directly in the Vercel dashboard for zero-config deploys and remove the `deploy` job.
+
 ## Editing content
 
 All copy, services, stats, FAQs and contact info live in [lib/site.ts](lib/site.ts) — edit there to update the whole site.
