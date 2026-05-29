@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand palette — black + "express" orange→amber energy */
+  --color-ink: #0a0a0d;
+  --color-ink-soft: #111118;
+  --color-ink-card: #15151f;
+  --color-line: #232330;
+
+  --color-brand: #ff4d2e;
+  --color-brand-2: #ff9a1e;
+  --color-brand-soft: #ff7a3c;
+
+  --color-cream: #f7f5f2;
+  --color-muted: #a4a4b3;
+
+  --font-display: var(--font-montserrat);
+  --font-body: var(--font-poppins);
+
+  --shadow-glow: 0 0 60px -15px rgba(255, 90, 40, 0.55);
+}
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  border-color: var(--color-line);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-ink);
+  color: var(--color-cream);
+  font-family: var(--font-body), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-display), system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Utility helpers */
+.text-gradient {
+  background: linear-gradient(100deg, var(--color-brand), var(--color-brand-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.glass {
+  background: rgba(21, 21, 31, 0.6);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.brand-gradient {
+  background: linear-gradient(100deg, var(--color-brand), var(--color-brand-2));
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-ink);
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a38;
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
