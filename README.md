@@ -49,6 +49,7 @@ A full, animated client portal with dummy data, skeleton loaders, filters, searc
 | Route | Description |
 |-------|-------------|
 | `/client/login` | Client login (demo) — split hero/form layout, show/hide password, demo autofill |
+| `/client/register` | Sign-up — personal/business toggle, business fields (name, PAN), validation |
 | `/client` | Overview — KPI stats, volume & status charts, quick actions, recent shipments, activity |
 | `/client/analytics` | Volume, spend, weekly activity, top destinations, status mix |
 | `/client/shipments` | Searchable, filterable, paginated shipments table |

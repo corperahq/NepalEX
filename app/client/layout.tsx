@@ -16,10 +16,11 @@ export default function ClientLayout({
   const [open, setOpen] = useState(false);
   const [ready, setReady] = useState(false);
 
-  const isLogin = pathname === "/client/login";
+  const isAuthPage =
+    pathname === "/client/login" || pathname === "/client/register";
 
   useEffect(() => {
-    if (isLogin) {
+    if (isAuthPage) {
       setReady(true);
       return;
     }
@@ -28,10 +29,10 @@ export default function ClientLayout({
       return;
     }
     setReady(true);
-  }, [isLogin, pathname, router]);
+  }, [isAuthPage, pathname, router]);
 
-  // The login page renders full-screen without the dashboard chrome.
-  if (isLogin) return <>{children}</>;
+  // Auth pages render full-screen without the dashboard chrome.
+  if (isAuthPage) return <>{children}</>;
 
   // Avoid flashing protected content before the auth check resolves.
   if (!ready) {

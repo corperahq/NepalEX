@@ -1,10 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { PackageCheck, X, LogOut } from "lucide-react";
 import { dashboardNav } from "./nav";
 import { logout } from "@/lib/auth";
+import { ConfirmDialog } from "./confirm-dialog";
 
 export function Sidebar({
   open,
@@ -15,6 +17,7 @@ export function Sidebar({
 }) {
   const pathname = usePathname();
   const router = useRouter();
+  const [confirm, setConfirm] = useState(false);
 
   const handleLogout = () => {
     logout();
@@ -111,7 +114,7 @@ export function Sidebar({
               <p className="truncate text-xs text-muted">Business account</p>
             </div>
             <button
-              onClick={handleLogout}
+              onClick={() => setConfirm(true)}
               className="text-muted transition-colors hover:text-rose-400"
               title="Log out"
             >
@@ -120,6 +123,16 @@ export function Sidebar({
           </div>
         </div>
       </aside>
+
+      <ConfirmDialog
+        open={confirm}
+        destructive
+        title="Log out?"
+        message="You'll be returned to the login page and will need to sign in again to access your dashboard."
+        confirmLabel="Log out"
+        onConfirm={handleLogout}
+        onCancel={() => setConfirm(false)}
+      />
     </>
   );
 }

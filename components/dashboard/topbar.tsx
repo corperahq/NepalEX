@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Menu, Search, Bell, PlusCircle, Sun } from "lucide-react";
+import { ProfileMenu } from "./profile-menu";
 
 export function Topbar({ onMenu }: { onMenu: () => void }) {
   return (
@@ -52,9 +53,7 @@ export function Topbar({ onMenu }: { onMenu: () => void }) {
           </span>
         </Link>
 
-        <span className="brand-gradient ml-1 flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold text-ink">
-          HC
-        </span>
+        <ProfileMenu />
       </div>
     </header>
   );

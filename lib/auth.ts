@@ -38,6 +38,24 @@ export function login(username: string, password: string): boolean {
   return false;
 }
 
+/**
+ * Demo registration. There's no backend yet, so this just creates a local
+ * session for the new account. Swap for a real signup API call later.
+ */
+export function register(name: string, email: string): Session {
+  const session: Session = {
+    username: email,
+    name: name.trim() || "New Client",
+    loggedInAt: Date.now(),
+  };
+  try {
+    localStorage.setItem(KEY, JSON.stringify(session));
+  } catch {
+    /* ignore */
+  }
+  return session;
+}
+
 export function logout(): void {
   try {
     localStorage.removeItem(KEY);

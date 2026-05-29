@@ -245,8 +245,8 @@ export default function ClientLoginPage() {
 
           <p className="mt-6 text-center text-sm text-muted">
             Don&apos;t have an account?{" "}
-            <Link href="/contact" className="font-semibold text-brand-2 hover:underline">
-              Contact sales
+            <Link href="/client/register" className="font-semibold text-brand-2 hover:underline">
+              Create one
             </Link>
           </p>
           <p className="mt-4 text-center">
