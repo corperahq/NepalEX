@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { PackageCheck, X, LogOut } from "lucide-react";
 import { dashboardNav } from "./nav";
+import { logout } from "@/lib/auth";
 
 export function Sidebar({
   open,
@@ -13,6 +14,12 @@ export function Sidebar({
   onClose: () => void;
 }) {
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handleLogout = () => {
+    logout();
+    router.replace("/client/login");
+  };
 
   const isActive = (href: string) =>
     href === "/client" ? pathname === "/client" : pathname.startsWith(href);
@@ -103,13 +110,13 @@ export function Sidebar({
               <p className="truncate text-sm font-semibold">Himalaya Crafts</p>
               <p className="truncate text-xs text-muted">Business account</p>
             </div>
-            <Link
-              href="/"
+            <button
+              onClick={handleLogout}
               className="text-muted transition-colors hover:text-rose-400"
               title="Log out"
             >
               <LogOut className="h-4 w-4" />
-            </Link>
+            </button>
           </div>
         </div>
       </aside>

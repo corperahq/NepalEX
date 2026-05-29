@@ -48,6 +48,7 @@ A full, animated client portal with dummy data, skeleton loaders, filters, searc
 
 | Route | Description |
 |-------|-------------|
+| `/client/login` | Client login (demo) — split hero/form layout, show/hide password, demo autofill |
 | `/client` | Overview — KPI stats, volume & status charts, quick actions, recent shipments, activity |
 | `/client/analytics` | Volume, spend, weekly activity, top destinations, status mix |
 | `/client/shipments` | Searchable, filterable, paginated shipments table |
@@ -64,6 +65,17 @@ A full, animated client portal with dummy data, skeleton loaders, filters, searc
 | `/client/settings` | Profile, business, security (2FA), notification prefs |
 
 The dashboard uses its own chrome (sidebar + topbar) via `app/client/layout.tsx`; the marketing navbar/footer are suppressed on `/client/*` by `SiteChrome`. All dummy data lives in [lib/dashboard-data.ts](lib/dashboard-data.ts); reusable dashboard UI (skeletons, charts, tables, filters, badges) is in [components/dashboard/](components/dashboard/).
+
+### Demo login
+
+The dashboard is gated by a demo, front-end-only auth ([lib/auth.ts](lib/auth.ts), localStorage-based). Visiting any `/client/*` route while signed out redirects to `/client/login`.
+
+| Field | Value |
+|-------|-------|
+| **Username** | `client` |
+| **Password** | `Abcd@123` |
+
+Replace `lib/auth.ts` with the real NepalEX backend / NextAuth when the API is available.
 
 ## Project structure
 

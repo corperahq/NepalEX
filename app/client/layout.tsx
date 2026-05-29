@@ -1,15 +1,46 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { Sidebar } from "@/components/dashboard/sidebar";
 import { Topbar } from "@/components/dashboard/topbar";
+import { isAuthenticated } from "@/lib/auth";
 
 export default function ClientLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+  const router = useRouter();
   const [open, setOpen] = useState(false);
+  const [ready, setReady] = useState(false);
+
+  const isLogin = pathname === "/client/login";
+
+  useEffect(() => {
+    if (isLogin) {
+      setReady(true);
+      return;
+    }
+    if (!isAuthenticated()) {
+      router.replace("/client/login");
+      return;
+    }
+    setReady(true);
+  }, [isLogin, pathname, router]);
+
+  // The login page renders full-screen without the dashboard chrome.
+  if (isLogin) return <>{children}</>;
+
+  // Avoid flashing protected content before the auth check resolves.
+  if (!ready) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-ink">
+        <span className="h-8 w-8 animate-spin rounded-full border-2 border-line border-t-brand" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-ink">

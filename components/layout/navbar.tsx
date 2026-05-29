@@ -65,7 +65,7 @@ export function Navbar() {
 
         <div className="hidden items-center gap-3 lg:flex">
           <Link
-            href="/client"
+            href="/client/login"
             className="text-sm font-medium text-muted transition-colors hover:text-cream"
           >
             Client Login
